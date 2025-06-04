@@ -1,0 +1,197 @@
+import React from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+
+const members = [
+  { name: 'Member One', role: 'Chairperson', photo: '.jpg' },
+  { name: 'Member Two', role: 'Vice Chair', photo: '/.jpg' },
+  { name: 'Member Three', role: 'Secretary', photo: '.jpg' },
+];
+
+const faculty = [
+  { name: 'Dr. Priyanka Jangde ', role: 'Faculty Advisor', photo: '/images/faculty1.jpg' },
+  { name: 'ProF Narendra Pal Singh', role: 'Faculty Advisor', photo: '/images/faculty2.jpg' },
+];
+
+const galleryImages = [
+  { src: '/images/photo1.jpg', caption: 'Empowering Minds at Work' },
+  { src: '/images/photo2.jpg', caption: 'Innovate and Inspire' },
+  { src: '/images/photo3.jpg', caption: 'Celebrating Women in Tech' },
+];
+
+const aboutUsPhotos = [
+  '/images/about1.jpg',
+  '/images/about2.jpg',
+  '/images/about3.jpg',
+];
+
+
+export default function ACMWebsite() {
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#D6EBEE] text-[#001B48] p-6">
+      {/* Header */}
+      <header className="flex justify-between items-center mb-8 border-b-4 border-[#02457A] pb-4">
+        <h1 className="text-4xl font-bold tracking-tight text-[#02457A]">ACM AITR-W Student Chapter</h1>
+        <nav className="space-x-6">
+          {['home', 'about-us', 'events'].map((section) => (
+            <Button
+              key={section}
+              onClick={() => scrollToSection(section)}
+              variant="ghost"
+              className="text-[#02457A] hover:text-[#018ABE] font-semibold transition-colors duration-300"
+            >
+              {section === 'home' ? 'Home' : section === 'about-us' ? 'About Us' : 'Events'}
+            </Button>
+          ))}
+        </nav>
+      </header>
+
+      {/* Home / Vision & Motto */}
+      <section id="home" className="mb-16 max-w-3xl mx-auto text-center">
+        <h2 className="text-3xl font-semibold mb-5 text-[#02457A]">Our Vision & Motto</h2>
+        <p className="text-[#001B48]/90 text-lg leading-relaxed px-4">
+          Empowering women in technology through leadership, innovation, and collaboration.
+          We strive to create an inclusive environment that fosters growth and learning.
+        </p>
+      </section>
+
+      {/* About Us */}
+      <section
+        id="about-us"
+        className="mb-16 min-h-[600px] max-w-6xl mx-auto rounded-3xl bg-gradient-to-r from-[#018ABE]/40 via-[#97CADB]/30 to-[#02457A]/20 p-10 shadow-lg"
+      >
+        <h2 className="text-4xl font-semibold mb-8 text-[#001B48] text-center">About Us</h2>
+        <div className="flex flex-col md:flex-row gap-10">
+          <div className="flex-1 text-[#001B48] text-lg leading-relaxed font-medium">
+            <p>
+              The ACM AITR-W Student Chapter is dedicated to fostering a community of women
+              passionate about technology and innovation. Established to encourage leadership,
+              collaboration, and professional development, we organize workshops, seminars,
+              and events to empower our members.
+            </p>
+            <p className="mt-6">
+              Our chapter actively participates in national and international ACM activities,
+              connecting students with the latest trends and technologies while promoting
+              diversity in STEM.
+            </p>
+          </div>
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {aboutUsPhotos.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt={`About us photo ${i + 1}`}
+                className="rounded-3xl object-cover h-52 w-full shadow-md border-4 border-[#97CADB] hover:border-[#018ABE] transition-all duration-300"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Core Committee Members */}
+      <section className="mb-16 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-semibold mb-6 text-[#02457A]">Core Committee Members</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {members.map((m, i) => (
+            <Card
+              key={i}
+              className="rounded-3xl shadow-lg bg-white border-4 border-[#97CADB] hover:border-[#018ABE] transition-colors duration-300"
+            >
+              <CardContent className="p-6 text-center">
+                <img
+                  src={m.photo}
+                  alt={m.name}
+                  className="w-28 h-28 mx-auto rounded-full object-cover mb-5 border-4 border-[#97CADB] hover:border-[#018ABE] transition-colors duration-300"
+                />
+                <h3 className="text-2xl font-bold text-[#001B48]">{m.name}</h3>
+                <p className="text-[#02457A] text-lg mt-1">{m.role}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Faculty Members */}
+      <section className="mb-16 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-semibold mb-6 text-[#02457A]">Faculty Members</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {faculty.map((f, i) => (
+            <Card
+              key={i}
+              className="rounded-3xl shadow-lg bg-white border-4 border-[#97CADB] hover:border-[#018ABE] transition-colors duration-300"
+            >
+              <CardContent className="p-6 text-center">
+                <img
+                  src={f.photo}
+                  alt={f.name}
+                  className="w-28 h-28 mx-auto rounded-full object-cover mb-5 border-4 border-[#97CADB] hover:border-[#018ABE] transition-colors duration-300"
+                />
+                <h3 className="text-2xl font-bold text-[#001B48]">{f.name}</h3>
+                <p className="text-[#02457A] text-lg mt-1">{f.role}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Events Conducted */}
+      <section id="events" className="mb-16 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-semibold mb-6 text-[#02457A]">Events Conducted</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {events.map((e, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.1 }}
+              className="relative rounded-3xl overflow-hidden shadow-lg border-4 border-[#97CADB] cursor-pointer bg-cover bg-center"
+              style={{ backgroundImage: `url(${eventBackgrounds[i % eventBackgrounds.length]})` }}
+            >
+              <div className="backdrop-blur-sm bg-white/70 p-8 min-h-[220px] flex flex-col justify-center items-center text-center rounded-3xl">
+                <h3 className="text-2xl font-bold mb-3 text-[#001B48]">{e.title}</h3>
+                <p className="text-[#02457A] text-lg">{e.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="mb-20 max-w-6xl mx-auto">
+        <h2 className="text-3xl font-semibold mb-6 text-[#02457A]">Gallery</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          {galleryImages.map((img, i) => (
+            <motion.div
+              key={i}
+              className="relative group rounded-3xl overflow-hidden shadow-lg border-4 border-[#97CADB]"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <img
+                src={img.src}
+                alt={`Gallery ${i + 1}`}
+                className="w-full h-64 object-cover rounded-3xl transition-transform duration-300 group-hover:scale-105 group-hover:brightness-90"
+              />
+              <div className="absolute inset-0 bg-[#001B48]/75 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-3xl px-4">
+                <p className="text-white text-center">{img.caption}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      <footer className="mt-12 text-center text-[#001B48]/60">
+        © {new Date().getFullYear()} ACM AITR-W Student Chapter. All rights reserved.
+      </footer>
+    </div>
+  );
+}
+
